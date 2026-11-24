@@ -1,22 +1,25 @@
 export default function Pokemon({ pokemon }) {
   const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-  const image = pokemon.sprites.other?.["official-artwork"]?.front_default
-    || pokemon.sprites.front_default;
+  const image =
+    pokemon.sprites.other?.["official-artwork"]?.front_default ||
+    pokemon.sprites.front_default;
 
   return (
-    <article className="pokemon-card" aria-label={`Information om ${name}`}>
+    <article className="pokemon-card" aria-label={`Information about ${name}`}>
       <div className="pokemon-visual">
-        <span className="pokemon-number">#{String(pokemon.id).padStart(3, "0")}</span>
+        <span className="pokemon-number">
+          #{String(pokemon.id).padStart(3, "0")}
+        </span>
         {image ? (
           <img src={image} alt={name} className="pokemon-image" />
         ) : (
-          <p>Ingen bild tillgänglig</p>
+          <p>No image available</p>
         )}
       </div>
       <div className="pokemon-info">
         <p className="eyebrow">Pokémon information</p>
         <h2>{name}</h2>
-        <div className="type-list" aria-label="Typer">
+        <div className="type-list" aria-label="Types">
           {pokemon.types.map(({ type }) => (
             <span className={`type-badge type-${type.name}`} key={type.name}>
               {type.name}
@@ -25,11 +28,11 @@ export default function Pokemon({ pokemon }) {
         </div>
         <div className="stats-grid">
           <div className="stat">
-            <span>Vikt</span>
+            <span>Weight</span>
             <strong>{(pokemon.weight / 10).toLocaleString("sv-SE")} kg</strong>
           </div>
           <div className="stat">
-            <span>Längd</span>
+            <span>Height</span>
             <strong>{(pokemon.height / 10).toLocaleString("sv-SE")} m</strong>
           </div>
         </div>

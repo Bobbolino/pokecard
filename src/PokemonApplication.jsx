@@ -32,7 +32,9 @@ export default function PokemonApplication() {
         setPokemonList(data.results);
       } catch (err) {
         if (err.name !== "AbortError") {
-          setError("Något gick fel när Pokémon-listan hämtades. Prova att ladda om sidan.");
+          setError(
+            "Något gick fel när Pokémon-listan hämtades. Prova att ladda om sidan.",
+          );
         }
       } finally {
         if (!controller.signal.aborted) setListLoading(false);
@@ -52,7 +54,7 @@ export default function PokemonApplication() {
 
     try {
       const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(selectedPokemon)}`
+        `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(selectedPokemon)}`,
       );
       if (!response.ok) throw new Error("Kunde inte hämta vald Pokémon.");
 
@@ -68,13 +70,11 @@ export default function PokemonApplication() {
   return (
     <section className="pokedex" aria-labelledby="pokedex-title">
       <div className="section-heading">
-        <p className="eyebrow">Generation I · Kanto</p>
-        <h1 id="pokedex-title">Din Pokédex</h1>
-        <p>Välj en av de 151 ursprungliga Pokémon för att se mer information.</p>
+        <h1 id="pokedex-title">Pokédex</h1>
+        <p>Choose between 151 Pokémons for more information.</p>
       </div>
 
       <div className="search-panel">
-        <label htmlFor="pokemon-select">Välj Pokémon</label>
         <div className="form-row">
           <select
             id="pokemon-select"
@@ -83,11 +83,12 @@ export default function PokemonApplication() {
             disabled={listLoading || pokemonList.length === 0}
           >
             <option value="">
-              {listLoading ? "Hämtar Pokémon..." : "Välj en Pokémon..."}
+              {listLoading ? "FetchingPokémon..." : "Select a Pokémon..."}
             </option>
             {pokemonList.map((pokemon, index) => (
               <option key={pokemon.name} value={pokemon.name}>
-                #{String(index + 1).padStart(3, "0")} {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                #{String(index + 1).padStart(3, "0")}{" "}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </option>
             ))}
           </select>
@@ -96,20 +97,26 @@ export default function PokemonApplication() {
             onClick={fetchSelectedPokemon}
             disabled={!selectedPokemon || listLoading || pokemonLoading}
           >
-            {pokemonLoading ? "Hämtar..." : "Hämta Pokémon"}
+            {pokemonLoading ? "Fetching..." : "Fetch Pokémon"}
           </button>
         </div>
-        {error && <p className="error-message" role="alert">{error}</p>}
+        {error && (
+          <p className="error-message" role="alert">
+            {error}
+          </p>
+        )}
       </div>
 
       {pokemonLoading ? (
-        <div className="empty-state" role="status">Hämtar information om Pokémon...</div>
+        <div className="empty-state" role="status">
+          Fetching information about Pokémon...
+        </div>
       ) : pokemonData ? (
         <Pokemon pokemon={pokemonData} />
       ) : (
         <div className="empty-state">
           <div className="small-ball" aria-hidden="true" />
-          <p>Din Pokémon visas här när du har valt och hämtat den.</p>
+          <p>Your selected Pokémon will appear here.</p>
         </div>
       )}
     </section>

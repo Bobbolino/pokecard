@@ -21,25 +21,20 @@ export default function App() {
               <span />
             </div>
 
-            <h1 id="welcome-title">"Gotta catch 'em all!"</h1>
-            <p className="welcome-description">
-              151 Pokémon-figurer. Välj en favorit och se bild, typ, vikt och
-              längd!
-            </p>
             <button className="primary-button" onClick={() => setStarted(true)}>
-              Nu kör vi! <span aria-hidden="true">→</span>
+              Start Pokemon App <span aria-hidden="true">→</span>
             </button>
           </section>
         ) : (
           <div>
             <button className="back-button" onClick={() => setStarted(false)}>
-              ← Tillbaka till start
+              ← Back to Start
             </button>
 
             <PokemonApplication />
           </div>
         )}
-        <footer>Byggd med React &amp; PokéAPI</footer>
+        <footer>Built with React &amp; PokéAPI</footer>
       </div>
     </main>
   );
