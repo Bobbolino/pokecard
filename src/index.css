@@ -398,3 +398,33 @@ footer {
     padding: 65px 20px;
   }
 }
+
+.back-button {
+  display: inline-block;
+  margin: 20px 0 0 30px;
+  padding: 10px 16px;
+
+  background: #19273e;
+  color: #a8c7fa;
+
+  border: 1px solid #40516d;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.back-button:hover {
+  background: #263b59;
+  border-color: #f34f5f;
+  color: white;
+  transform: translateX(-3px);
+}
+
+.back-button:focus-visible {
+  outline: 3px solid #ffd166;
+  outline-offset: 3px;
+}

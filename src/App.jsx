@@ -32,8 +32,8 @@ export default function App() {
           </section>
         ) : (
           <div>
-            <button onClick={() => setStarted(false)}>
-              Tillbaka till start
+            <button className="back-button" onClick={() => setStarted(false)}>
+              ← Tillbaka till start
             </button>
 
             <PokemonApplication />
