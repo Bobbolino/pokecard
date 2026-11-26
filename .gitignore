@@ -20,5 +20,4 @@ yarn-error.log*
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
-src/Pokemon.jsx
-src/PokemonApplication.jsx
+
